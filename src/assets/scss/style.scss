@@ -1,0 +1,8 @@
+//Import Bootstrap SCSS file. 
+@import '~bootstrap/scss/bootstrap';
+
+//Import ngx-toastr
+@import '~ngx-toastr/toastr.css';
+
+//Import Main Dashboard Theme(scss files)
+@import './theme/theme.scss';

@@ -1,0 +1,65 @@
+<!--========-->
+<!--HEADER  -->
+<!--========-->
+
+<!-- [class.open]="open" : apply open class if open Varable (From ts file) = true -->
+<div class="page-main-header" [class.open]="open">
+    <div class="main-header-right row">
+        <div class="main-header-left d-lg-none">
+
+            <!-- BRAND LOGO -->
+            <div class="logo-wrapper">
+                <a href="">
+                    <img class="blur-up lazyloaded" src="/assets/images/dashboard/sahosoft-mall-logo.png" alt="Sahosoft all" />
+                </a>
+            </div>
+        </div>
+
+        <!-- MOBILE HEADER LEFT SIDE(collapse)-->
+        <div class="mobile-sidebar">
+            <div class="media-body text-right switch-sm">
+                <label class="switch">
+                    <a (click)="collapseSidebar()">
+                        <app-feather-icon icon="align-left"></app-feather-icon>
+                    </a>
+                </label>
+            </div>
+        </div>
+
+        <!--MOBILE HEADER RIGHT SIDE(settings+dropdown)-->
+        <!-- openNav = true => apply open class -->
+        <div class="nav-right col">
+            <ul class="nav-menus" [ngClass]="{'open':openNav}">
+                <li class="onhover-dropdown"></li>
+                <li></li>
+                <li class="onhover-dropdown">
+                    <!--Profile Image-->
+                    <div class="media align-items-center">
+                        <img class="align-self-center pull-right img-50 rounded-circle" src="/assets/images/dashboard/user.png" alt="User" />
+                    </div>
+
+                    <!-- Dropdown -->
+                    <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
+                        <li>
+                            <a routerLink="/settings/profile">
+                                <app-feather-icon icon="user"></app-feather-icon>Edit Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/auth/login">
+                                <app-feather-icon icon="log-out"></app-feather-icon>Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Mobile Nav Toggler-->
+            <!-- opens in mobile screen-->
+            <!-- Dropdown icon -->
+            <div class="d-lg-none mobile-toggle pull-right" (click)="openMobileNav()">
+                <app-feather-icon icon="more-horizontal"></app-feather-icon>
+            </div>
+        </div>
+    </div>
+</div>

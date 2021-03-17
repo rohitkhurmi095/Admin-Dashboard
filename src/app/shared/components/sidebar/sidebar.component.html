@@ -1,0 +1,94 @@
+<!--========--->
+<!-- SIDEBAR -->
+<!--========--->
+
+<div class="main-header-left d-none d-lg-block">
+    
+    <!-- BRAND LOGO-->
+    <div class="logo-wrapper">
+        <a>
+            <img class="blur-up lazyloaded" src="/assets/images/dashboard/sahosoft-mall-logo.png" alt="Sahosoft Mall">
+        </a>
+    </div>
+</div>
+
+<div class="sidebar custom-scrollbar">
+    
+    <!-- USER SECTION-->
+    <div class="sidebar-user text-center">
+        <div>
+            <img class="img-60 rounded-circle" src="/assets/images/dashboard/user.png" alt="User">
+        </div>
+        <h6 class="mt-3 f-14"> {{userName}} </h6>
+        <p> {{userType}} </p>
+    </div>
+    
+    
+    
+    <!-- MENU ITEMS SECTION: Dynamically Bind MenuItems here-->
+    <!-- MenuItems are binded based on Menu Level:SUBMENU OR LINK-->
+    <!-- give active class if menuItem has active:true-->
+    <ul class="sidebar-menu">
+        <!-- active class is used to open/close submenu of menu-->
+        <li Class="active" *ngFor="let menuItem of menuItems" [ngClass]="{'active':menuItem.active}">
+            
+            <!------------------------>
+            <!--== 1st Level Menu ==-->
+            <!------------------------>
+            <!-- Sub menu -->
+            <!-- click/toggle to open subMenu-->
+            <a href="javascript:void(0)" class="sidebar-header" *ngIf="menuItem.type==='sub'" (click)="onToggleNavActive(menuItem)">
+                <app-feather-icon [icon]="menuItem.icon"></app-feather-icon> <span> {{menuItem.title}} </span>
+                
+                <!-- only show this icon if menu has children => submenu -->
+                <!-- item down toggler: only if menu has children => submenu-->
+                <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+            </a>
+            <!--== Link menu ==-->
+            <a class="sidebar-header" *ngIf="menuItem.type==='link'" [routerLink]="menuItem.path" routerLinkActive="active">
+                <app-feather-icon [icon]="menuItem.icon"></app-feather-icon> <span> {{menuItem.title}} </span>
+               
+                <!-- only show this icon if menu has children => submenu -->
+                <!-- item down toggler: only if menu has children => submenu-->
+                <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+            </a>
+            
+            
+            <!------------------------>
+            <!--== 2nd Level Menu ==-->
+            <!------------------------>
+            <!-- apply menu-open class if menuItem.active -->
+            <ul class="sidebar-submenu" *ngIf="menuItem.children" [ngClass]="{'menu-open':menuItem.active}">
+                <li Class="active" *ngFor="let childrenItem of menuItem.children" [ngClass]="{'active':childrenItem.active}">
+                    <!-- Sub -->
+                    <a href="javascript:void(0)" *ngIf="childrenItem.type==='sub'" (click)="onToggleNavActive(childrenItem)">
+                        <i class="fa fa-circle"></i><span> {{childrenItem.title}}</span>
+
+                        <!-- only show this icon if menu has children => submenu -->
+                        <!-- item down toggler: only if menu has children => submenu-->
+                        <i class="fa fa-angle-down pull-right" *ngIf="childrenItem.children"></i>
+                    </a>
+                    <!-- Link -->
+                    <a *ngIf="childrenItem.type==='link'" [routerLink]="childrenItem.path" routerLinkActive="active">
+                        <i class="fa fa-circle"></i><span> {{childrenItem.title}} </span>
+                        
+                        <!-- only show this icon if menu has children => submenu -->
+                        <!-- item down toggler: only if menu has children => submenu-->
+                        <i class="fa fa-angle-down pull-right" *ngIf="childrenItem.children"></i>
+                    </a>
+                    
+                    <!--== 3rd Level Menu ==-->
+                    <ul class="sidebar-submenu" *ngIf="childrenItem.children">
+                        <li *ngFor="let childrenSubItem of childrenItem.children" [ngClass]="{'active':menuItem.active}">
+                            <!-- Link -->
+                            <a *ngIf="childrenSubItem.type==='link'" [routerLink]="childrenSubItem.path" routerLinkActive="active">
+                                <i class="fa fa-circle"></i><span> {{childrenSubItem.title}} </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+</div>

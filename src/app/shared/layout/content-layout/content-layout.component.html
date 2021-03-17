@@ -1,0 +1,34 @@
+<!-- ======= -->
+<!-- LAYOUT  -->
+<!-- ======= -->
+
+<div class="page-wrapper">
+    <!-- HEADER -->
+    <app-header></app-header>
+
+    
+    <div class="page-body-wrapper">
+
+        <!-- SIDEBAR -->
+        <!-- apply open class based on collapseSideBar = true/false-->
+        <div class="page-sidebar" [ngClass]="{'open':_navService.collapseSidebar}">
+           <app-sidebar></app-sidebar>
+        </div>    
+        
+        <!-- BODY CONTENT -->
+        <div class="page-body">
+            <!-- BreadCrumb Component -->
+            <app-breadcrumb></app-breadcrumb>
+
+            <!--Content page load here-->
+            <!-- dynamically load routes here:page body-->
+            <router-outlet></router-outlet>
+        </div>
+            
+        <!-- FOOTER -->
+        <footer class="footer">
+            <app-footer></app-footer>
+        </footer>
+
+    </div>
+</div>

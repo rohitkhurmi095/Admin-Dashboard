@@ -104,6 +104,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
               "src/assets/scss/style.scss"
             ],
             "scripts": [

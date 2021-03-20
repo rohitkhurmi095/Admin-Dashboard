@@ -111,7 +111,7 @@ export class NoWhiteSpaceValidator{
         if(fc.value != undefined && fc.value != "" && fc.value != null){
 
             //check for whiteSpace (by converting formControl.value => string + trim string & check its length)
-            const isWhiteSpace = (fc.value.tostring().trim().length === 0);
+            const isWhiteSpace = (fc.value.toString().trim().length === 0);
 
             //if no whiteSpace exists
             if(!isWhiteSpace){

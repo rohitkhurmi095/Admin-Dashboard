@@ -10,7 +10,7 @@
 //EnumBName =DbOpeartions  
 //method = create update delete view
 
-export enum DbOperaations{
+export enum DbOperations{
     create = 1,
     update = 2,
     delete = 3,

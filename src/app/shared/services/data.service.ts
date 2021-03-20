@@ -26,7 +26,7 @@ export class DataService {
   //===============
   // POST
   //===============
-  post(url:string,model:any):Observable<any>{
+  /*post(url:string,model:any):Observable<any>{
     const body = JSON.stringify(model);
 
     //set headers
@@ -35,6 +35,12 @@ export class DataService {
     return this.http.post(url,body,{
       headers:httpHeaders
     });
+  }*/
+
+  post(url:string,model:any):Observable<any>{
+    const body = JSON.stringify(model);
+
+    return this.http.post(url,body);
   }
 
   //NOTE For images we dont have to set headers
@@ -51,7 +57,7 @@ export class DataService {
   //===============
   // PUT
   //===============
-  put(url:string,id:number,model:any):Observable<any>{
+  /*put(url:string,id:number,model:any):Observable<any>{
     const body = JSON.stringify(model);
 
     //set headers
@@ -60,13 +66,19 @@ export class DataService {
     return this.http.put(url + id,body,{
       headers:httpHeaders
     });
+  }*/
+
+  put(url:string,id:number,model:any):Observable<any>{
+    const body = JSON.stringify(model);
+
+    return this.http.put(url + id,body);
   }
 
   
   //===============
   // DELETE 
   //===============
-  delete(url:string,id:number):Observable<any>{
+  /*delete(url:string,id:number):Observable<any>{
 
     //set headers
     let httpHeaders = new HttpHeaders().set('Content-Type','application/json');
@@ -74,6 +86,11 @@ export class DataService {
     return this.http.delete(url + id, {
       headers:httpHeaders
     });
+  }*/
+
+  delete(url:string,id:number):Observable<any>{
+    
+    return this.http.delete(url + id);
   }
 
 

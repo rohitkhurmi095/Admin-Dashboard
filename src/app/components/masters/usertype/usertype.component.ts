@@ -203,8 +203,8 @@ export class UsertypeComponent implements OnInit {
     this.objRow = this.objRows.find(x => x.id === Id);
 
     //Update the Row with Id found
-    this.addform.controls.id.setValue(this.objRow.id);
-    this.addform.controls.name.setValue(this.objRow.name); 
+    this.addform.controls['id'].setValue(this.objRow.id);
+    this.addform.controls['name'].setValue(this.objRow.name); 
   }
 
 

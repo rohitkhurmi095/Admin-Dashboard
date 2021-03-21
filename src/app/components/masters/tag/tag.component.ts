@@ -103,7 +103,7 @@ export class TagComponent implements OnInit,OnDestroy {
   //Dynamic Form Validation Function
   //_________________________________
   onValueChanges(){
-    console.log('value changes');
+    //console.log('value changes');
 
     //loops through keys of formErrors
     for(const field of Object.keys(this.formErrors)){
@@ -193,8 +193,8 @@ export class TagComponent implements OnInit,OnDestroy {
     this.objRow = this.objRows.find(x => x.id === Id);
     
     //updateRow
-    this.addForm.controls.id.setValue(this.objRow.id);
-    this.addForm.controls.name.setValue(this.objRow.name);
+    this.addForm.controls['id'].setValue(this.objRow.id);
+    this.addForm.controls['name'].setValue(this.objRow.name);
   }
 
 
@@ -313,7 +313,6 @@ export class TagComponent implements OnInit,OnDestroy {
       this.addForm.reset({
         id:0 //not passed as formControl
       });
-
       //reset DbOps + button
       this.dbOps = DbOperations.create;
       this.buttonText = "Submit";

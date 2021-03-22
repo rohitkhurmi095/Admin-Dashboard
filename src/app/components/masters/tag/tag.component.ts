@@ -105,6 +105,11 @@ export class TagComponent implements OnInit,OnDestroy {
   onValueChanges(){
     //console.log('value changes');
 
+    //if form is invalid(undefined)
+    if(!this.addForm){
+      return;
+    }
+
     //loops through keys of formErrors
     for(const field of Object.keys(this.formErrors)){
       //here field = formControlName = name
@@ -266,7 +271,7 @@ export class TagComponent implements OnInit,OnDestroy {
       case DbOperations.update:
         this.dataService.post(Global.BASE_API_PATH + "TagMaster/Update/",this.addForm.value).subscribe(res =>{
           if(res.isSuccess){
-            this._toastr.success('Data Updatedd Successfully', 'Tag Master');
+            this._toastr.success('Data Updated Successfully', 'Tag Master');
 
             //change Tabset after creating tag
             this.elName.select('viewTab');
@@ -308,7 +313,13 @@ export class TagComponent implements OnInit,OnDestroy {
   //---------------------------------------------------------
   //(navChange) = "onTabChange($event)"
   onTabChange(event:any){
+    //view tabset
     if(event.activeId === 'viewTab'){
+      this.getData();
+    }
+
+    //add tabset
+    if(event.activeId === 'addTab'){
       //reset form 
       this.addForm.reset({
         id:0 //not passed as formControl

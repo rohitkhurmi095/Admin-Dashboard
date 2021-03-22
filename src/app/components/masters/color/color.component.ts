@@ -281,7 +281,7 @@ export class ColorComponent implements OnInit {
       case DbOperations.update:
         this._dataService.post(Global.BASE_API_PATH + "ColorMaster/Update/",this.addForm.value).subscribe(res =>{
           if(res.isSuccess){
-            this._toastr.success('Data Updatedd Successfully', 'Color Master');
+            this._toastr.success('Data Updated Successfully', 'Color Master');
 
             //call table binding + default form state
             this.setForm();
@@ -316,7 +316,13 @@ export class ColorComponent implements OnInit {
   //when tab changes from addTab -> viewTab
   //(navChange)="onTabChange($event)"
   onTabChange(event:any){
+    //view tabset
     if(event.activeId === 'viewTab'){
+      this.getData();
+    }
+
+    //add tabset
+    if(event.activeId === 'addTab'){
       //reset form
       this.addForm.reset({
         id:0 //not passed as formControl

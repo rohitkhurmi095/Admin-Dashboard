@@ -52,7 +52,7 @@ export class HeaderInterceptor implements HttpInterceptor {
             //2.pass jwt (currentUser.token)
             request = req.clone({
               setHeaders: {
-                'Content-Type':'application/json'
+                'Authorization':`Bearer ${currentUser.token}`
               }
             })
             

@@ -50,7 +50,9 @@ export class DataService {
   //=> avoid set headers for images in interceptors
   postImages(url:string,model:any){
     let httpHeaders = new HttpHeaders().set('isImage','');
-    return this.http.post(url,model);
+    return this.http.post(url,model,{
+      headers:httpHeaders
+    });
   }
 
 

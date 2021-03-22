@@ -323,7 +323,13 @@ export class SizeComponent implements OnInit,OnDestroy {
   //-----------------------------------------------
   // (navChange)="onTabChange($event)" -set on ngbNav Tabset
   onTabChange(event:any){
+    //view tabset
     if(event.activeId === 'viewTab'){
+      this.getData();
+    }
+
+    //add tabset
+    if(event.activeId === 'addTab'){
       this.addform.reset({
         id:0 //not passed as formData
       });

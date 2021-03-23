@@ -232,7 +232,7 @@ export class CategoryComponent implements OnInit,OnDestroy {
     //if file is not of type image extension => reset fileUpload field to null
      //check file type (match with image extension regx)
      if(type.match(/image\/*/) === null){
-      this._toastr.error('Only images are supported', 'BrandLogo Master');
+      this._toastr.error('Only images are supported', 'Category Master');
       this.elFile.nativeElement.value = '';
       return;
     }

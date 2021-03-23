@@ -1,3 +1,64 @@
-<p>list-user works!</p>
+<!--============-->
+<!-- List User  -->
+<!--============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="card">
+        <!-- Page Title -->
+        <div class="card-header">
+            <h5>User Details</h5>
+        </div>
+    
+        <div class="card-body">
+            <!-- Link To Create User Form -->
+            <div class="btn-popup pull-right">
+                <a class="btn btn-secondary" routerLink="/users/create-user"> Add User</a>
+            </div>
+            
+            <div class="category-table custom-datatable transcation-datatable user-image">
+                <div class="table-responsive">
+                
+                    <!---------------------------------------------->
+                    <!-- @swimlane/ngx-datatable ------------------->
+                    <!---------------------------------------------->
+                    <!-- case insensitive -->
+                    <ngx-datatable class="bootstrap" [rows]="objRows" [columnMode]="'force'"
+                                 [rowHeight]="'auto'" [headerHeight]="50" [footerHeight]="50"
+                                 [limit]="5" (sort)="onSort($event)" (page)="setPage($event)">
+
+                        <!-- First Name-->
+                        <ngx-datatable-column  class="bootstrap" name="FirstName"></ngx-datatable-column>
+
+                        <!-- Last Name-->
+                        <ngx-datatable-column  class="bootstrap" name="LastName"></ngx-datatable-column>
+
+                        <!-- Email-->
+                        <ngx-datatable-column  class="bootstrap" name="Email"></ngx-datatable-column>
+
+                         <!-- UserType-->
+                         <ngx-datatable-column  class="bootstrap" name="UserType"></ngx-datatable-column>
+
+                        <!-- Created Date-->
+                        <ngx-datatable-column class="bootstrap" name="Created Date" prop="createdOn">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                {{value}}
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                        <!-- Actions(Edit/Delete)-->
+                        <!-- prop="id" is passed to value-->
+                        <ngx-datatable-column class="bootstrap" name="Actions" prop="id">
+                            <ng-template  let-row="row" let-value="value" ngx-datatable-cell-template>
+                                <button type="button" (click)="Edit(value)">  <i class="fa fa-edit"></i>  </button>
+                                <button type="button" (click)="Delete(value)"> <i class="fa fa-trash-o"></i> </button>
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+                    <!---------------------------------------------->
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

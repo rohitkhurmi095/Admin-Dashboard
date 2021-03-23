@@ -1,3 +1,136 @@
-<p>create-user works!</p>
+<!--============-->
+<!-- Create User -->
+<!--============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card tab2-card">
+                <!-- Page Title -->
+                <div class="card-header">
+                    <h5>Add User</h5>
+                </div>
+                
+                <!-- Create User Form -->
+                <div class="card-body tab2-card">
+
+                    <!-- ngb Nav TABSET-->
+                    <ul ngbNav #nav="ngbNav" class="nav-tabs" activeId="addTab">
+                        <li ngbNavItem="addTab">
+                            <a ngbNavLink>Add</a> 
+                            <ng-template ngbNavContent>
+
+                                    <!-- FORM (smilar to register User) -->
+                                    <!--registration form start -->
+                                    <!-- apply is-invalid class in input if form is submitted & input has error -->
+                                    <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                                    
+
+                                        <!-- firstName -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>First Name</label>
+                                            <input class="form-control col-xl-8 col-md-7" type="text" formControlName="firstName"
+                                             [ngClass]="{'is-invalid':submitted && f.firstName.errors}">
+                                
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.firstName.errors">
+                                                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                                <div *ngIf="f.firstName.errors.minlength">Min length is 3</div>
+                                                <div *ngIf="f.firstName.errors.maxlength">Max length is 15</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- lastName -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Last Name</label>
+                                            <input class="form-control col-xl-8 col-md-7" type="text" formControlName="lastName"
+                                            [ngClass]="{'is-invalid':submitted && f.lastName.errors}">
+                                
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.lastName.errors">
+                                                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                                <div *ngIf="f.lastName.errors.minlength">Min length is 3</div>
+                                                <div *ngIf="f.lastName.errors.maxlength">Max length is 15</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- email -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Email</label>
+                                            <input class="form-control col-xl-8 col-md-7" type="email" formControlName="email" 
+                                            [ngClass]="{'is-invalid':submitted && f.email.errors}">
+                                
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.email.errors">
+                                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                                <div *ngIf="f.email.errors.validEmail">Email must be a valid email address</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- userType SELECTOR -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>User Type</label>
+                                            
+                                            <!-- SELECT -->
+                                            <select class="form-control col-xl-8 col-md-7" type="text" formControlName="userTypeId"  
+                                                    [ngClass]="{'is-invalid':submitted && f.email.errors}">
+                                                <option value="">-- Select User Type --</option>
+                                                <option *ngFor="let type of objUserTypes" [value]="type.id">{{type.name}}</option>
+                                            </select>
+                                    
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.userTypeId.errors">
+                                                <div *ngIf="f.userTypeId.errors.required">UserType is required</div>
+                                            </div>
+                                        </div>
+                                          
+                                        <!-- password -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Password</label>
+                                            <input class="form-control col-xl-8 col-md-7" type="password" formControlName="password"
+                                            [ngClass]="{'is-invalid':submitted && f.password.errors}">
+                                
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.password.errors">
+                                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                                <div *ngIf="f.password.errors.pattern">Password must be atleast 8 char long,contains lowercase letters,uppercase letters,numbers & special chars.</div>
+                                            </div>
+                                        </div>
+
+
+                                        <!-- confirm password -->
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Confirm Password</label>
+                                            <input class="form-control col-xl-8 col-md-7" type="password" formControlName="confirmPassword"
+                                            [ngClass]="{'is-invalid':submitted && f.confirmPassword.errors}">
+                                
+                                            <!-- Validation Messages-->
+                                            <div class="col-xl-3 col-md-4"></div>
+                                            <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.confirmPassword.errors">
+                                                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                                <div *ngIf="f.confirmPassword.errors.mustMatch">Confirm Password must match with Password.</div>
+                                            </div>
+                                        </div>
+
+                            
+                                        <div class="form-button pull-right">
+                                            <button class="btn btn-primary" type="submit">{{buttonText}}</button>
+                                        </div>
+                                    </form>
+                                    <!--registration form start -->
+        
+                                </ng-template> 
+                            </li> 
+                        </ul> 
+                    <div [ngbNavOutlet]="nav"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

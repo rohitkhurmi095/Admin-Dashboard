@@ -48,7 +48,7 @@ export class BrandlogoComponent implements OnInit,OnDestroy {
   // for Image Upload
   //====================
   //default Preview Image from assets folder
-   //variable for uploaded Image src 
+  //variable for uploaded Image src 
   editImagePath = '/assets/images/brandlogo/noimage.jpg';
 
   //uploaded image will be saved in this variable

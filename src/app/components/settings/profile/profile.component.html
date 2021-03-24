@@ -1,3 +1,94 @@
-<p>profile works!</p>
+<!--==============-->
+<!-- User Profile -->
+<!--==============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- LEFT SIDE CONTAINER -->
+        <div class="col-xl-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="profile-details text-center">
+                        <!-- imagePath = user profile image from API-->
+                        <img [src]="imagePath" alt="Profile Image" class="img-fluid img-90 rounded-circle blur-up lazyloaded">
+                        <h5 class="f-w-600 mb-0">{{fullName}}</h5>
+                        <span> {{email}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- RIGHT SIDE CONTAINER(Tabset) -->
+        <div class="col-xl-8">
+            <div class="card tab2-card">
+                <div class="card-body">
+
+                    <ul ngbNav #nav="ngbNav" class="nav-tabs" activeId="viewTab"> 
+                        <!----------------->
+                        <!-- VIEW TABSET -->
+                        <!----------------->
+                        <li ngbNavItem="viewTab">
+                            <a ngbNavLink> Profile </a>
+                            <ng-template ngbNavContent>
+                                
+                                <div class="tab-pane fade show active" id="top-profile" role="tabpanel" aria-labelledby="top-profile-tab">
+                                    <h5 class="f-w-600"> Profile</h5>
+                                    <div class="table-responsive profile-table">
+                                        <table class="table table-responsive">
+                                            <tbody>
+                                                <tr>
+                                                    <td>First Name:</td>
+                                                    <td>{{firstName}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Last Name:</td>
+                                                    <td>{{lastName}}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Email:</td>
+                                                    <td>{{email}}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                            </ng-template>
+                        </li>
+
+                        <!------------------>
+                        <!-- UPDATE TABSET-->
+                        <!------------------>
+                        <li ngbNavItem="updateTab">
+                            <a ngbNavLink> Update Profile </a>
+                            <ng-template ngbNavContent>
+                                
+                                <div class="form-group row">
+                                    <!-- Upload field-->
+                                    <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span> Profile Image </label>    
+                                    <!-- accept only png/jpeg images-->
+                                    <input class="form-control col-xl-8 col-md-7" type="file" #file (change)="upload(file.files)" accept="image/x-png,image/jpeg">
+                                    
+                                    <!-- UPLOAD IMAGE PREVIEW -->
+                                    <!-- editImagePath = NoPreview Image(from assets:default) before any image upload-->
+                                    <div class="col-xl-3 col-md-4"></div>
+                                    <img [src]="editImagePath" alt="brand logo" width="100px" height="100px">
+                                </div>
+                                
+                                <!-- Update Button -->
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-primary" (click)="onSubmit()">Update</button>
+                                </div>
+                              
+                            </ng-template>
+                        </li> 
+                    </ul> 
+                    <div [ngbNavOutlet]="nav"></div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

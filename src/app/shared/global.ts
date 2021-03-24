@@ -17,9 +17,9 @@ export class Global{
     
     //Base images path: Image Folder Path
     //images gets stored in this folder
-    public static BASE_IMAGES_PATH = "http://sahosoftweb.com/images";
+    public static BASE_IMAGES_PATH = "http://sahosoftweb.com/images/";
 
     //user images path: Users Images Folder Path
     //user related images gets stored in this folder
-   public static BASE_USER_IMAGES_PATH = "http://sahosoftweb.com/users";
+   public static BASE_USER_IMAGES_PATH = "http://sahosoftweb.com/users/";
 }

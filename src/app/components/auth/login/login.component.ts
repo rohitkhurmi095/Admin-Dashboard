@@ -130,7 +130,7 @@ export class LoginComponent implements OnInit {
     this.registerForm = this._fb.group({
       //API fields
       id:[0],
-      userTypeId:[1],
+      userTypeId:[1], //admin
 
       //FormData fields
       firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(15)])],

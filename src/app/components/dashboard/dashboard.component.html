@@ -1,3 +1,150 @@
-<p>dashboard works!</p>
+<!--============-->
+<!-- DASHBOARD  -->
+<!--============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+
+        <!--__________________-->
+        <!--____ COUNTER  ____-->
+        <!--___________________->
+        <!--USING angular-count-to -->
+
+        <!-- COUNTER1: Orders-->
+        <!--------------------->
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-warning card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <!-- feather icon here-->
+                                <app-feather-icon icon="navigation" class="font-warning"></app-feather-icon>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">Orders</span>
+                            <!-- angular-count-to: CountTo from duration-->
+                            <h3 class="mb-0">₹ <span class="counter" [CountTo]="varorders" [from]="0" [duration]="2"></span><small>This Year</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTER2: Shipping Amount-->
+        <!------------------------------>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-secondary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <!-- feather icon here-->
+                                <app-feather-icon icon="box" class="font-secondary"></app-feather-icon>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">Shipping Amount</span>
+                            <!-- angular-count-to: CountTo from duration-->
+                            <h3 class="mb-0">₹ <span class="counter" [CountTo]="varshipAmt" [from]="0" [duration]="2"></span><small>This Year</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTER3: CashOnDelivery-->
+        <!----------------------------->
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-primary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <!-- feather icon here-->
+                                <app-feather-icon icon="message-square" class="font-primary"></app-feather-icon>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">Cash On Delivery</span>
+                            <!-- angular-count-to: CountTo from duration-->
+                            <h3 class="mb-0">₹ <span class="counter" [CountTo]="varcashOnDelivery" [from]="0" [duration]="2"></span><small>This Year</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTER4: Cancelled-->
+        <!------------------------>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-danger card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <!-- feather icon here-->
+                                <app-feather-icon icon="users" class="font-danger"></app-feather-icon>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">Cancelled</span>
+                            <!-- angular-count-to: CountTo from duration-->
+                            <h3 class="mb-0">₹ <span class="counter" [CountTo]="varcancelled" [from]="0" [duration]="2"></span><small>This Year</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    
+        <!====================>
+        <!====== TABLE =======>
+        <!====================>
+        <div class="col-xl-12 xl-100">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Latest Orders</h5>
+                </div>
+
+                <div class="card-body">
+                    <div class="user-status table-responsive latest-order-table">
+                        <div id="batchDelete" class="category-table custom-datatable transcation-datatable">
+                            <div class="table-responsive">
+                            
+                                <!----------------------->
+                                <!--NG2-SMARTtable here-->
+                                <!----------------------->
+                                <!-- settings = columns (define in ts file)-->
+                                <!-- source = table rows[] : insert API data here-->
+                            
+                                <ng2-smart-table [source]="ordersRow" [settings]="settings"></ng2-smart-table>   
+                            
+                                <!----------------------->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-------------------->
+        <!--==== GRAPH =====-->
+        <!-------------------->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5> Processing / Cancelled / Delivered / Shipped </h5>
+                </div>
+
+                <div class="card-body sell-graph">
+                
+                    GRAPH HERE
+            
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

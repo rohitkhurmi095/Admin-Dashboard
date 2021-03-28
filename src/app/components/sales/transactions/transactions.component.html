@@ -1,3 +1,33 @@
-<p>transactions works!</p>
+<!--==============-->
+<!-- TRANSACTIONS -->
+<!--==============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Transaction Details</h5>
+                </div>
+                
+                <div class="card-body">
+                    <div id="batchDelete" class="category-table custom-datatable transcation-datatable">
+                        <div class="table-responsive">
+
+                             <!----------------------->
+                            <!--NG2-SMARTtable here-->
+                            <!----------------------->
+                            <!-- settings = columns (define in ts file)-->
+                            <!-- source = table rows[] : insert API data here-->
+                            
+                            <ng2-smart-table [source]="transactions" [settings]="settings"></ng2-smart-table>
+                            
+                            <!----------------------->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -76,7 +76,7 @@
                                             
                                             <!-- SELECT -->
                                             <select class="form-control col-xl-8 col-md-7" type="text" formControlName="userTypeId"  
-                                                    [ngClass]="{'is-invalid':submitted && f.email.errors}">
+                                                    [ngClass]="{'is-invalid':submitted && f.userTypeId.errors}">
                                                 <option value="">-- Select User Type --</option>
                                                 <option *ngFor="let type of objUserTypes" [value]="type.id">{{type.name}}</option>
                                             </select>

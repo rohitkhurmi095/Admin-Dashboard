@@ -1,3 +1,35 @@
-<p>invoice works!</p>
+<!--===============-->
+<!-- INVOICE MODULE-->
+<!--===============-->
 
-<router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <!-- Title-->
+                <div class="card-header">
+                    <h5>Invoice List</h5>
+                </div>
+                
+                <!-- INVOICE TABLE (PAYMENT DETAILS - Payment API)-->
+                <div class="card-body">
+                    <div id="batchDelete" class="category-table custom-datatable transcation-datatable">
+                        <div class="table-responsive">
+                            
+                            <!----------------------->
+                            <!--NG2-SMARTtable here-->
+                            <!----------------------->
+                            <!-- settings = columns (define in ts file)-->
+                            <!-- source = table rows[] : insert API data here-->
+                            
+                            <ng2-smart-table [settings]="settings" [source]="invoice" ></ng2-smart-table>     
+                            
+                            <!----------------------->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

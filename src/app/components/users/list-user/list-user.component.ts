@@ -52,7 +52,7 @@ export class ListUserComponent implements OnInit,OnDestroy {
   //receive the id on the Edit form Component using activatedRoute instance -> To Edit Form Values
   Edit(Id:number){
 
-    console.log('Edit row with Id: ', Id);
+    //console.log('Edit row with Id: ', Id);
     
     //we dont have Edit Form here - it is available on '/users/create-user'
     //navigate to this url by passing Id  or row to be edited as queryParam

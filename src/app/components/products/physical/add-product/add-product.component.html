@@ -1,3 +1,285 @@
-<p>add-product works!</p>
+<!--=============-->
+<!-- Add Product -->
+<!--=============-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="card">
+                <!-- PAGE TITLE -->
+			    <div class="card-header">
+				    <h5> Add Product</h5>
+			    </div>
+			
+			    <div class="card-body">
+				    <div class="row product-adding">
 
-<router-outlet></router-outlet>
+                        <!--_______________________-->
+                        <!-- UPLOAD PRODUCT IMAGES -->
+                        <!--_______________________-->
+					    <div class="col-xl-5">
+						    <div class="add-product">
+							    <div class="row">
+                                    <!-- BIG PRODUCT IMAGE (COVER PREVIEW)-->
+								    <div class="col-xl-9 xl-50 col-sm-6 col-9">
+									    <img alt="Product" [src]="bigImage" class="img-fluid image_zoom_1">
+								    </div>
+
+                                    <!-- SMALL 5 product images upload with with preview-->
+								    <div class="col-xl-3 xl-50 col-sm-6 col-3">
+									    <ul class="file-upload-product">
+                                            <!-- loop through url[ containing 5 images]-->
+										    <li *ngFor="let item of url; let i=index">
+											    <div class="box-input-file">
+                                                    <!-- i=index of img from url[] : multiple file upload -->
+												    <input class="upload" type="file" #file (change)="upload($event,i)"/>
+												    <img class="imgUpload" [src]="item.img" />
+											    </div>
+										    </li>
+									    </ul>
+								    </div>
+							    </div>
+						    </div>
+					    </div>
+
+
+                        <!--___________________-->
+                        <!--  ADD PRODUCTS FORM-->
+                        <!--___________________-->
+                        <!-- apply class is-invalid IF FORM IS SUBMITTED & input has errors-->
+					    <div class="col-xl-7">
+                            <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+						        
+                                <!-- Input fields START-->
+                                <div class="add-product-form">
+
+                                    <!-- NAME -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Name</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="text" formControlName="name" 
+                                         [ngClass]="{'is-invalid':submitted && f.name.errors}">
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.name.errors">
+                                            <div *ngIf="f.name.errors.required">{{validationMessage.name.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.name">{{formErrors.name}}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- TITLE -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Title</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="text" formControlName="title"
+                                         [ngClass]="{'is-invalid':submitted && f.title.errors}">
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.title.errors">
+                                            <div *ngIf="f.title.errors.required">{{validationMessage.title.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.title">{{formErrors.title}}</div>
+                                        </div>
+                                    </div>
+    
+
+                                    <!-- CODE-->
+                                    <div class="form-group row"> 
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Code</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="text" formControlName="code"
+                                          [ngClass]="{'is-invalid':submitted && f.code.errors}">
+                                
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.code.errors">
+                                            <div *ngIf="f.code.errors.required">{{validationMessage.code.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.code">{{formErrors.code}}</div>
+                                        </div>
+                                    </div>
+    
+                                    
+                                    <!-- PRICE -->
+                                    <div class="form-group row"> 
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Price</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="number" formControlName="price"
+                                        [ngClass]="{'is-invalid':submitted && f.price.errors}">
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.price.errors">
+                                            <div *ngIf="f.price.errors.required">{{validationMessage.price.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.price">{{formErrors.price}}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <!-- SALE PRICE -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>SalePrice</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="number" formControlName="salePrice" 
+                                        [ngClass]="{'is-invalid':submitted && f.salePrice.errors}">
+                                
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.salePrice.errors">
+                                            <div *ngIf="f.salePrice.errors.required">{{validationMessage.salePrice.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.salePrice">{{formErrors.salePrice}}</div>
+                                        </div>
+                                    </div>
+    
+                                    
+                                    <!-- DISCOUNT -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Discount</label>
+                                        <input class="form-control col-xl-8 col-md-7" type="number" formControlName="discount" 
+                                        [ngClass]="{'is-invalid':submitted && f.discount.errors}">
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.discount.errors">
+                                            <div *ngIf="f.discount.errors.required">{{validationMessage.discount.required}}</div>
+                                            <div class="text-danger" *ngIf="formErrors.discount">{{formErrors.discount}}</div>
+                                        </div>
+                                    </div>
+    
+
+                                    <!-- SELECT SIZE -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Size</label>
+                                        <select class="form-control col-xl-8 col-md-7" formControlName="sizeId"
+                                        [ngClass]="{'is-invalid':submitted && f.sizeId.errors}">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let size of objSizes" [value]="size.id">{{size.name}}</option>
+                                        </select>
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.sizeId.errors">
+                                            <div *ngIf="f.sizeId.errors.required">{{validationMessage.sizeId.required}}</div>
+                                        </div>
+                                    </div>
+                            
+
+                                    <!-- CATEGORIES -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Category</label>
+                                        <select class="form-control col-xl-8 col-md-7" formControlName="categoryId"
+                                        [ngClass]="{'is-invalid':submitted && f.categoryId.errors}">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let category of objCategories" [value]="category.id">{{category.name}}</option>
+                                        </select>
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.categoryId.errors">
+                                            <div *ngIf="f.categoryId.errors.required">{{validationMessage.categoryId.required}}</div>
+                                        </div>
+                                    </div>
+    
+
+                                    <!-- TAG -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Tag</label>
+                                        <select class="form-control col-xl-8 col-md-7" formControlName="tagId"
+                                        [ngClass]="{'is-invalid':submitted && f.tagId.errors}">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let tag of objTags" [value]="tag.id">{{tag.name}}</option>
+                                        </select>
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.tagId.errors">
+                                            <div *ngIf="f.tagId.errors.required">{{validationMessage.tagId.required}}</div>
+                                        </div>
+                                    </div>
+    
+
+                                    <!-- COLOR -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Color</label>
+                                        <select class="form-control col-xl-8 col-md-7" formControlName="colorId"
+                                        [ngClass]="{'is-invalid':submitted && f.colorId.errors}">
+                                            <option value="">--Select--</option>
+                                            <option *ngFor="let color of objColors" [value]="color.id">{{color.name}}</option>
+                                        </select>
+                                    
+                                        <!-- validation messages -->
+                                        <div class="col-xl-3 col-md-4"></div>
+                                        <div class="col-xl-3 col-md-4 invalid-feedback" *ngIf="submitted && f.colorId.errors">
+                                            <div *ngIf="f.colorId.errors.required">{{validationMessage.colorId.required}}</div>
+                                        </div>
+                                    </div>
+    
+                                
+                                    <!-- TOTAL PRODUCTS-->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 colmd-4"><span>*</span>Total Products :</label>
+                                        <div class="qty-box1">
+                                            <div class="input-group">	
+                                                <i class="fa fa-minus btnGtr1" (click)="decrement()"></i>
+                                                <input type="text" class="touchspin1 text-center" formControlName="quantity" readonly/> 
+                                                <i class="fa fa-plus btnLess1" (click)="increment()"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <!-- IS Sale -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 colmd-4"><span>*</span>IsSale:</label>
+                                        <div class="checkbox checkbox-primary col-xl-8 col-md-7">
+                                            <input id="checkbox-primary-2" type="checkbox" formControlName="isSale" />
+                                            <label for="checkbox-primary-2"> Select for mark this product forSale</label>
+                                        </div>
+                                    </div>
+    
+                                
+                                    <!-- IS New-->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 colmd-4"><span>*</span>IsNew:</label>
+                                        <div class="checkbox checkbox-primary col-xl-8 col-md-7">
+                                            <input id="checkbox-primary-3" type="checkbox" formControlName="isNew" />
+                                            <label for="checkbox-primary-3"> Select for mark this product for New</label>
+                                        </div>
+                                    </div>
+
+    
+                                    <!-- SHORT DETAILS -->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Short Details</label>
+                                        <textarea rows="5" cols="12" class="form-control col-xl-8 col-md-7" formControlName="shortDetails"></textarea>
+                                    </div>
+    
+
+                                    <!-- DESCRIPTION (ckEditor)-->
+                                    <div class="form-group row">
+                                        <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>Description</label>
+
+                                        <!-- ngx ck-editor-->
+                                        <!-- language='en': editor language-->
+                                        <!--fullPage:enable/disable fullPage mode on editor-->
+                                        <!-- ngModel : 2 way binding value -->
+                                        <ck-editor  language="en" [fullPage]="true" formControlName="description"></ck-editor>
+
+                                    </div>
+
+                                </div>
+                                <!-- Input fields end-->
+                                    
+    
+                                <!-- BUTTONS -->
+                                <div class="form-group row mb-0">
+                                    <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                        <button type="submit" class="btn btn-primary mr-1">Submit</button>
+                                        <button type="button" class="btn btn-light" (click)="cancelForm()">Discard</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <!-- form END-->
+						
+					    </div>
+				    </div>
+			    </div>
+		    </div>	
+	    </div>
+    </div>
+</div>

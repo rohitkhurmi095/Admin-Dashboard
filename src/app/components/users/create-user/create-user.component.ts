@@ -172,8 +172,6 @@ export class CreateUserComponent implements OnInit,OnDestroy{
 
     //if addForm is VALID - SUBMIT
     //-----------------------------
-   
-
     //perform ADD/EDIT operation
     switch(this.dbOps){
       

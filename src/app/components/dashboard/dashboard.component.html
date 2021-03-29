@@ -135,14 +135,30 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h5> Processing / Cancelled / Delivered / Shipped </h5>
+                    <!-- Processing / Cancelled / Delivered / Shipped-->
+                    <h5> Processing / Cancelled / Delivered / Shipped</h5>
                 </div>
 
-                <div class="card-body sell-graph">
                 
-                    GRAPH HERE
-            
+                <!-----ng2 charts ------------>
+                <!---------------------------->
+                <div class="card-body sell-graph">
+                    
+                    <!-- SHOW CHART ONLY IF DATA IS RECEIVED FROM API-->
+                    <!-- isShowOrderStatus = true -->
+                    <ng-template [ngIf]="isShowOrderStatus">
+                        <canvas id="myGraph" baseChart 
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors">
+                      </canvas>
+                    </ng-template>
+              
                 </div>
+                <!----------------------------->  
             </div>
         </div>
 

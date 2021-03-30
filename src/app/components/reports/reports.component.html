@@ -1,3 +1,151 @@
 <!--=============-->
 <!-- RESPORTS    -->
 <!--=============-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!------------>
+        <!-- CHART1: Sales Data Payment Type Wise -->
+        <!------------>
+        <div class="col-xl-12 col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Sales Data Payment Type Wise</h5>
+                </div>
+                
+                <!-- GRAPH-->
+                <!-- ===== ng2-charts =====-->
+                <!--------------------------->
+                <div class="card-body sell-graph">
+                
+                   <!-- SHOW CHART ONLY IF DATA IS RECEIVED FROM API-->
+                    <!-- isShowOrderStatus = true -->
+                    <ng-template [ngIf]="isSalesDataPaymentTypeWise">
+                        <canvas id="myGraph" baseChart 
+                        [datasets]="salesChartData"
+                        [labels]="salesChartLabels"
+                        [legend]="salesChartLegend"
+                        [chartType]="salesChartType"
+                        [options]="salesChartOptions"
+                        [colors]="salesChartColors">
+                      </canvas>
+                    </ng-template>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+        <!------------>
+        <!-- CHART2 -->
+        <!------------>
+        <div class="col-xl-12 col-md-12">
+            <div class="card report-employee">
+                <div class="card-header">
+                    <h5>Customer Growth</h5>
+                </div>
+                
+                <!-- ===== ng-chartist (point curve) =====-->
+                <!------------------------------------------>
+                <div class="card-body p-0 o-hidden">
+                    <div class="ct-4 flot-chart-container report-full" >
+                    
+                        <ng-template [ngIf]="chart">
+                            <x-chartist
+                              [data]="chart.data"
+                              [options]="chart.options"
+                              [type]="chart.type">
+                            </x-chartist>
+                        </ng-template>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <!------------>
+        <!-- TABLE  -->
+        <!------------>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Cash On Delivery Report</h5>
+                </div>
+                
+                <div class="card-body">
+                    <div id="batchDelete" class="custom-datatable">
+                        <div class="table-responsive">
+                        
+                            <!-- ng2-smart-table-->
+                            <!-- source = rows -->
+                            <!-- settings = columns -->
+
+                                <ng2-smart-table [source]="reports" [settings]="settings"></ng2-smart-table>
+
+                            <!-------------------->
+               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        
+        
+        <!------------>
+        <!-- CHART3 -->
+        <!------------>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order status data</h5>
+                </div>
+            
+                
+                <!-- ===== ng2-google-chart (column chart) =====-->
+                <!------------------------------------------------>
+                <div class="card-body">
+                    <div class="sales-chart">
+
+                       <ng-template [ngIf]="columnChart">
+                           <google-chart [data]="columnChart"></google-chart>
+                       </ng-template>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!------------>
+        <!-- CHART4 -->
+        <!------------>
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Order status data</h5>
+                </div>
+
+                
+                <!-- ===== ng2-google-chart (line chart) =====-->
+                <!---------------------------------------------->
+                <div class="card-body sell-graph">
+
+                    <ng-template [ngIf]="lineChart">
+                        <google-chart [data]="lineChart"></google-chart>
+                    </ng-template>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

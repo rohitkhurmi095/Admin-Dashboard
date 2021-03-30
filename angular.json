@@ -36,6 +36,7 @@
             "styles": [
               "src/styles.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
+              "node_modules/chartist/dist/chartist.css",
               "src/assets/scss/style.scss"
             ],
             "scripts": [
@@ -105,6 +106,7 @@
               "src/styles.scss",
               "node_modules/font-awesome/scss/font-awesome.scss",
               "node_modules/@swimlane/ngx-datatable/themes/bootstrap.scss",
+              "node_modules/chartist/dist/chartist.css",
               "src/assets/scss/style.scss"
             ],
             "scripts": [
